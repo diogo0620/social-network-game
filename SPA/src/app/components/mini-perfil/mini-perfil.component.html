@@ -1,0 +1,35 @@
+
+<div class="pagina">
+    <div class="seccao" *ngIf="utilizador && dadosCarregados">
+        <img src="../../../assets/{{utilizador.avatar}}" alt="foto-perfil">
+        <h1>{{utilizador.nome}}</h1>
+        <h3>{{utilizador.email}}</h3>
+    </div>
+    
+    <div class="seccao" *ngIf="utilizador && dadosCarregados">
+        <h2>Amigos</h2>
+        <p>{{nrAmigos}}</p>
+    </div>
+    
+    <div class="seccao" *ngIf="utilizador && dadosCarregados">
+        <h2>Dimensão</h2>
+        <p>{{dimensao}}</p>
+    </div>
+
+    <div class="seccao" *ngIf="utilizador && dadosCarregados">
+        <h2>Fortaleza</h2>
+        <p>{{fortaleza}}</p>
+    </div>
+    
+
+    <div class="ver-mais" *ngIf="utilizador && dadosCarregados">
+        <hr>
+        <a href="perfil">Ver Perfil</a>
+    </div>
+
+    <div class="aCarregarUtilizador" *ngIf="!utilizador || !dadosCarregados">
+        <p>A carregar utilizador...</p>
+        <div class="loader"></div>
+    </div>
+</div>
+

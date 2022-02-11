@@ -1,0 +1,61 @@
+<div class="pagina">
+
+    <div class="topo">
+        <h2>Enviar pedido de introdução para {{utilizador.nome}}</h2>
+        <hr>
+    </div>
+
+    <div class="a-procurar" *ngIf="aPesquisarAmigosEmComum">
+        <h2>A pesquisar amigos em comum...</h2>
+        <div class="loader"></div>
+    </div>
+
+    <div class="meio" *ngIf="!aPesquisarAmigosEmComum">
+        <form [formGroup]="formPedirLigacao">
+
+            <div class="introducao">
+                <div class="mensagem">
+                    <h2><b>Intermediário</b></h2>
+                    <select formControlName="intermediario">
+                        <option [value]="intermediario.id" *ngFor="let intermediario of intermediarios">{{intermediario.nome}} ({{intermediario.email}})</option>
+                    </select>
+                </div>
+
+
+                <div class="mensagem">
+                    <h2><b>Mensagem (introdução)</b></h2>
+                    <input type="text" formControlName="mensagemIntroducao">
+                </div>
+            </div>
+
+            
+
+            <div class="ligacao">
+                <div class="mensagem">
+                    <h2><b>Mensagem (ligação)</b></h2>
+                    <input type="text" formControlName="mensagemLigacao">
+                </div>
+    
+                <div class="tags">
+                    <h2><b>Tags</b></h2>
+                    <input type="text" formControlName="tags">
+                </div>
+    
+                <div class="forca-ligacao">
+                    <h2><b>Forca de Ligação</b></h2>
+                    <div class="forca">
+                        <input type="range" value="50" min="1" max="100" oninput="this.nextElementSibling.value = this.value" formControlName="forcaLigacao">
+                        <output>50</output>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="fundo" *ngIf="!aPesquisarAmigosEmComum">
+        <button style="background-color: firebrick;margin-right: 5px; " (click)="cancelar()"><b>Cancelar</b></button>
+        <button style="background-color: forestgreen;" (click)=enviarPedido()><b>Enviar Pedido</b></button>
+    </div>
+
+</div>

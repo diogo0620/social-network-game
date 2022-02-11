@@ -1,0 +1,59 @@
+
+
+
+
+
+<div class="pagina">
+
+    <div class="topo">
+        <app-menu-topo-utilizador></app-menu-topo-utilizador>
+    </div>
+    
+
+   <div class="restante-pagina">
+
+        
+
+        <div class="esquerda">
+            
+            <div class="perfil" >
+                <app-mini-perfil #perfil></app-mini-perfil>
+            </div>
+
+
+            <div class="sugestoes">
+                <app-mini-sugestoes #sugestoes></app-mini-sugestoes>
+            </div>
+        </div>
+
+        <div class="centro">
+
+            <div class="fazer-publicacao" >
+                <app-fazer-post #fazerPost (emitEvent)="feitoPost($event)"></app-fazer-post>
+            </div>
+
+            <div class="feed-posts" >
+                <app-feed-posts #feedPosts (emitEvent)="feedAtualizado($event)"></app-feed-posts>
+            </div>
+            
+        </div>
+
+        <div class="direita">
+            <div class="pedidos">
+                <app-mini-pedidos #pedidos (emitEvent)="novoAmigo($event)"></app-mini-pedidos>
+            </div>
+
+
+            <div class="classificacao">
+                <app-mini-classificacao #classificacao></app-mini-classificacao>
+            </div>
+        </div>
+
+       
+   </div>
+</div>
+
+
+
+
+

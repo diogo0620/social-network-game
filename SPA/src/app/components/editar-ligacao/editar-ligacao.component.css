@@ -1,0 +1,111 @@
+.pagina {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topo {
+  width: 100%;
+  height: 15%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.meio {
+  width: 100%;
+  height: 60%;
+}
+
+.fundo {
+  width: 100%;
+  height: 20%;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.topo h2 {
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+}
+
+form h2 {
+  color: white;
+  font-size: 1.2rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+form .tags {
+  display: flex;
+  width: 60%;
+  align-items: center;
+  justify-content: flex-start;
+
+  background-color: white;
+  border-radius: 10px;
+}
+
+form .tags h2 {
+  background-color: grey;
+  padding: 2px 5px;
+  font-size: 1.1rem;
+  border-radius: 10px;
+}
+
+form .tags input {
+  background-color: transparent;
+  border: 0;
+  color: #20416a;
+  width: 100%;
+  padding: 0 5px;
+}
+
+form .tags input:focus {
+  outline: 0;
+}
+
+form .forca-ligacao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+form .forca {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form .forca output {
+  color: white;
+  margin-left: 5px;
+}
+
+.fundo button {
+  padding: 10px;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+}
+
+.fundo button:hover {
+  opacity: 0.8;
+}

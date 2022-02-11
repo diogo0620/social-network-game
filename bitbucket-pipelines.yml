@@ -1,0 +1,18 @@
+image: mcr.microsoft.com/dotnet/sdk:5.0
+
+pipelines:
+  default:
+    - step:
+        caches:
+          - dotnetcore
+        name: Instalar dependencias (MDR)
+        script:
+          - dotnet restore MDR/MDR.sln
+    - step:
+        name: Compilar (MDR)
+        script:
+          - dotnet build MDR/MDR.sln
+    - step:
+        name: Testes (MDR)
+        script:
+          - dotnet test MDR/MDR.sln

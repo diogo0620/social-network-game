@@ -1,0 +1,215 @@
+{
+	"info": {
+		"_postman_id": "8732ef13-28b2-4249-aa7d-c5ef6bcbd4eb",
+		"name": "Testes MDP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "post autenticacao utilizador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"\r",
+							"pm.globals.set(\"autenticacao\", responseJson.token); // save the category's id for further tests\r",
+							"\r",
+							"console.log(pm.globals.get(\"autenticacao\"));   "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"helder.ajf@gmail.com\",\r\n    \"password\":\"#Helderserralva91\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/autenticacao/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"autenticacao",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Posts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create Post",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"id\", \"87d30d51-33f4-48f4-83ee-94851ce73f11\");\r",
+							"pm.environment.set(\"texto\", \"Ola a todos!\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body returns the correct utilizador id\", function () {\r",
+							"    pm.expect(responseJson.utilizadorId).to.eql(pm.environment.get(\"id\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body returns the correct text\", function () {\r",
+							"    pm.expect(responseJson.texto).to.eql(pm.environment.get(\"texto\"));\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.globals.set(\"id\", responseJson.utilizadorId);\r",
+							"pm.globals.set(\"texto\", responseJson.texto);\r",
+							"pm.globals.set(\"post_id\", responseJson._id); // save the category's id for further tests\r",
+							"\r",
+							"console.log(pm.globals.get(\"post_id\"));   "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{autenticacao}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"utilizadorId\": \"{{id}}\",\r\n    \"texto\":\"{{texto}}\",\r\n    \"tags\":[\"AAA\"]\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Post Just Created",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Post creation returns status 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Post has correct id\", function () {\r",
+							"    pm.expect(responseJson._id).to.eql(pm.globals.get(\"post_id\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Post has correct text\", function () {\r",
+							"    pm.expect(responseJson.texto).to.eql(pm.globals.get(\"texto\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Post has correct uti\", function () {\r",
+							"    pm.expect(responseJson.utilizadorId).to.eql(pm.globals.get(\"id\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/posts/{{post_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"posts",
+						"{{post_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

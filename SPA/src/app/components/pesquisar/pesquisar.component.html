@@ -1,0 +1,81 @@
+
+
+<div class="pagina">
+
+    <div class="topo">
+        <app-menu-topo-utilizador></app-menu-topo-utilizador>
+    </div>
+    
+
+    <div class="restante-pagina">
+        
+        <div class="esquerda">
+            <p>Especifique alguns parâmetros de pesquisa para que seja mais fácil encontrar o utilizador desejado.</p>
+            <form [formGroup]="formFiltragem" (ngSubmit) = "filtrarResultados()">
+
+                
+
+                <div class="campo-pesquisa">
+                    <label for="Email"><b>Email: </b></label>
+                    <input type="email" name="Email"  formControlName="email">
+                </div>
+
+                <div class="campo-pesquisa">
+                    <label for="Nome"><b>Nome: </b></label>
+                    <input type="text" name="Nome"  formControlName="nome">
+                </div>
+
+                <div class="campo-pesquisa">
+                    <label for="Pais"><b>Pais: </b></label>
+                    <input type="text" name="Pais"  formControlName="pais">
+                </div>
+
+                <div class="campo-pesquisa">
+                    <label for="Cidade"><b>Cidade: </b></label>
+                    <input type="text" name="Cidade"  formControlName="cidade">
+                </div>
+                
+                <button type="submit" [disabled]="!formFiltragem.valid"><b>Procurar</b></button>  
+            </form>
+
+
+
+
+
+            
+        </div>
+
+        <div class="direita" *ngIf="!aProcurarResultados">
+                <div class="utilizador" *ngFor="let uti of utilizadores">
+                    <img src="../../../assets/{{uti.avatar}}" alt="avatar">
+
+                    <div class="nomes">
+                        <h2>{{uti.nome}}</h2>
+                        <h3>{{uti.email}}</h3>
+                    </div>
+
+                    <div class="em-comum">
+                        <h2>Amigos em comum</h2>
+                        <p>0</p>
+                    </div>
+
+                    <div class="em-comum">
+                        <h2>Tags em comum</h2>
+                        <p>0</p>
+                    </div>
+
+                    <button (click)="irParaPerfil(uti.id)"><b>Ver Perfil</b></button>
+                </div>
+
+                <div class="sem-resultados" *ngIf="utilizadores.length == 0">
+                    <p>Não foram encontrados resultados para a pesquisa.</p>
+                </div>
+
+            </div>
+
+
+
+    </div>
+
+
+</div>

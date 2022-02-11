@@ -1,0 +1,96 @@
+.menu-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
+}
+
+.menu-topo .logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  height: 100%;
+}
+
+.logo h1 {
+  color: white;
+  font-size: 1.6rem;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.logo h2 {
+  color: white;
+  font-size: 0.6rem;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.menu-topo-pesquisa {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 20px;
+  padding: 7px 15px;
+}
+
+.menu-topo-pesquisa input {
+  font-size: 1rem;
+  border: none;
+  background-color: transparent;
+  color: #20416a;
+}
+
+.menu-topo-pesquisa input:hover,
+.menu-topo-pesquisa input:focus {
+  outline: none;
+}
+
+.menu-topo-pesquisa img {
+  width: 20px;
+  cursor: pointer;
+}
+
+.menu-topo-opcoes {
+  display: flex;
+  justify-content: space-around;
+  width: 40%;
+}
+
+.menu-topo-opcoes img {
+  width: 20px;
+}
+
+.menu-topo-opcoes p {
+  color: white;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.menu-topo .opcao {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.menu-topo .opcao:hover {
+  border-bottom: solid white 3px;
+  transition: 0.2s;
+}
+
+.menu-topo button {
+  background-color: white;
+  padding: 10px;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: #20416a;
+}
+
+.menu-topo button:hover {
+  background-color: rgb(223, 223, 223);
+}

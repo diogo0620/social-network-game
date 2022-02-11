@@ -1,0 +1,172 @@
+
+<div class="pagina">
+
+    <div class="pagina-topo">
+        <app-menu-topo-utilizador></app-menu-topo-utilizador>
+    </div>
+    
+    
+    <div class="restante-pagina">
+  
+        <div class="esquerda">
+            
+            <div class="tipo-pedido">
+
+                <div class="topo">
+                    <h2>Pedidos Ligação</h2>
+                    <img src="../../../assets/expandir.png" alt="">
+                </div>
+
+                <div class="opcoes">
+                    <div class="opcao">
+                        <input type="checkbox" [(ngModel)]="ligacaoPendentes" (change)="checkBoxAlterada(1, $event)">
+                        <p>Pendentes</p>
+                    </div>
+
+                    <div class="opcao">
+                        <input type="checkbox" [(ngModel)]="ligacaoAceites" (change)="checkBoxAlterada(2, $event)">
+                        <p>Aceites</p>
+                    </div>
+
+                    <div class="opcao">
+                        <input type="checkbox" [(ngModel)]="ligacaoRecusados" (change)="checkBoxAlterada(3, $event)">
+                        <p>Recusados</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tipo-pedido">
+                <div class="topo">
+                    <h2>Pedidos Introdução</h2>
+                    <img src="../../../assets/expandir.png" alt="">
+                </div>
+
+                <div class="opcoes">
+                    <div class="opcao">
+                        <input type="checkbox" [(ngModel)]="introducaoPendentes" (change)="checkBoxAlterada(4, $event)">
+                        <p>Pendentes</p>
+                    </div>
+
+                    <div class="opcao">
+                        <input type="checkbox" [(ngModel)]="introducaoAceites" (change)="checkBoxAlterada(5, $event)">
+                        <p>Aceites</p>
+                    </div>
+
+                    <div class="opcao">
+                        <input type="checkbox" [(ngModel)]="introducaoRecusados" (change)="checkBoxAlterada(6, $event)">
+                        <p>Recusados</p>
+                    </div>
+                </div>
+            </div>
+
+
+          
+
+        </div>
+
+        <div class="direita">
+            
+            <div class="pedidos">
+                <div class="pedido" *ngFor="let pedido of pedidos">
+                    
+                    <div class="pedido-esquerda">
+                        <img src="../../../assets/{{pedido.deUtilizador.avatar}}" style="cursor: pointer;" (click)="irParaPerfil(pedido.deUtilizador.id)">
+                        <h3>{{pedido.deUtilizador.nome}}</h3>
+                        <p>{{pedido.data}}</p>
+                    </div>
+
+                    <div class="pedido-direita">
+                        <div class="pedido-direita-topo">
+                            <p *ngIf="pedido.estado == 'ACEITE'" class="estado-pedido" style="background-color: green;"><b>Aceite</b></p>
+                            <p *ngIf="pedido.estado == 'RECUSADO'" class="estado-pedido" style="background-color: red;"><b>Recusado</b></p>
+                            <p *ngIf="pedido.estado == 'PENDENTE'" class="estado-pedido" style="background-color: grey;"><b>Pendente</b></p>
+                            
+                            <div class="aceitar-recusar-pedido" *ngIf="pedido.estado == 'PENDENTE'">
+                                <button style="background-color: red;" (click)="recusarPedido(pedido)"><b>Recusar</b></button>
+                                <button style="background-color: green;" (click)="aceitarPedido(pedido)"><b>Aceitar</b></button>
+                            </div>
+                            
+                            
+                            <p class ="tipo-pedido"><b>{{pedido.tipo}}</b></p>
+                        </div>
+
+                        <hr>
+
+                        <div class="pedido-direita-baixo">
+
+                            <div class="mensagem">
+                                <ng-container *ngIf="pedido.mensagem != null; else elseTemplate">
+                                    <h3>Mensagem: </h3>
+                                    <p>{{pedido.mensagem}}</p>
+                                </ng-container>
+                                <ng-template #elseTemplate>
+                                    <p>Nenhuma mensagem foi especificada</p>
+                                </ng-template>
+                                
+                                
+                            </div>
+
+                            <div class="tags-e-forca" *ngIf="pedido.tipo == 'Ligação'">
+                                <div class="tf">
+                                    <h3>Tags: </h3>
+                                    <p *ngFor="let t of pedido.tags" class="tag">{{t}}</p>
+
+                                </div>
+
+                                <div class="tf">
+                                    <h3>Força: </h3>
+                                    <p>{{pedido.forcaLigacao}}</p>
+                                </div>
+                            </div>
+
+                            <div class="para-quem" *ngIf="pedido.tipo == 'Introdução'">
+                                    <img src="../../../assets/{{pedido.utilizadorObjetivo.avatar}}" alt="avatar">
+                                    <h2>{{pedido.utilizadorObjetivo.nome}}</h2>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+            
+
+
+
+                </div>
+
+                <div class="aceitar-pedido-ligacao" *ngIf="pretendeAceitarPedidoLigacao">
+                    <app-aceitar-pedido-ligacao [pedido]="pedidoLigacaoParaAceitar" (janelaAberta)="janelaAceitarLigacao($event)"></app-aceitar-pedido-ligacao>
+                </div>
+
+
+                <div *ngIf="pedidos.length == 0" class="sem-pedidos">
+                    <p>Não foram encontrados pedidos.</p>
+                </div>
+
+           
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+    
+   
+    
+
+
+
+
+
+
+
+

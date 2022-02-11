@@ -1,0 +1,263 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.pagina {
+  display: flex;
+  height: 100vh;
+}
+
+.esquerda {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-image: url(../../../assets/background.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.esquerda .logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90%;
+}
+
+.esquerda .logo h1 {
+  color: white;
+  font-size: 3.2rem;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.esquerda .logo h2 {
+  color: white;
+  font-size: 1.2rem;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.esquerda .dimensao {
+  background-color: white;
+  border: 2px solid #243165;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.esquerda .dimensao h3 {
+  color: #243165;
+  font-size: 1.1rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.esquerda .dimensao p {
+  color: #22506e;
+}
+
+.direita {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  padding: 2%;
+  width: 60%;
+}
+
+.registo {
+  height: 100%;
+}
+
+.texto-introdutorio {
+  margin-bottom: 1%;
+}
+
+.texto-introdutorio h1 {
+  font-size: 2.1rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #243165;
+}
+
+.texto-introdutorio h2 {
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #22506e;
+}
+
+.registo form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 85%;
+  width: 100%;
+}
+
+.registo form .inp {
+  width: 70%;
+  display: flex;
+  border-bottom: solid #22506e 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.registo form .inp img {
+  margin-right: 2%;
+  width: 28px;
+  height: 28px;
+}
+
+.registo form .inp input {
+  width: 100%;
+  font-size: 1rem;
+  padding: 1%;
+  border: none;
+  color: #22506e;
+}
+
+form .inp input:hover,
+form .inp input:focus {
+  outline: none;
+}
+
+.registo form select {
+  width: 100%;
+  font-size: 1rem;
+  padding: 1%;
+  border: none;
+  color: #22506e;
+}
+
+form select:hover,
+form select:focus {
+  outline: none;
+}
+
+.registo form button {
+  font-size: 1.2rem;
+  padding: 1%;
+  width: 35%;
+  cursor: pointer;
+  color: white;
+  background-color: #22506e;
+  border: 0;
+}
+
+.registo form button:hover {
+  background-color: #238573;
+}
+
+.registo form button:disabled {
+  background: grey;
+  cursor: not-allowed;
+}
+.registo a {
+  font-style: italic;
+  text-decoration: underline;
+}
+.direita h4 {
+  color: #22506e;
+  font-size: 1.4rem;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.login {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1.5%;
+  margin-bottom: 5%;
+  width: 100%;
+  background-image: url("../../../assets/background.jpg");
+  background-size: cover;
+  border-radius: 10px;
+}
+
+.login form {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 80%;
+}
+
+.login form button {
+  font-size: 0.9rem;
+  width: 18%;
+  padding: 1.5%;
+  cursor: pointer;
+  color: #22506e;
+  border: 0;
+
+  background-color: white;
+  border-radius: 8rem;
+}
+
+.login form button:hover {
+  background-color: #238573;
+  color: white;
+}
+
+.login form button:disabled {
+  background: grey;
+  color: white;
+  cursor: not-allowed;
+}
+
+.login form .inp {
+  display: flex;
+  border-bottom: solid white 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login form .inp img {
+  margin-right: 2%;
+  width: 22px;
+  height: 22px;
+}
+
+.login form input {
+  width: 100%;
+  font-size: 0.9rem;
+  padding: 1%;
+  border: none;
+  color: white;
+  background: transparent;
+}
+
+.login form input::placeholder {
+  color: #828887;
+}
+
+.rpgd {
+  position: absolute;
+  background-color: rgb(223, 223, 223);
+  background-position: center;
+  background-size: cover;
+  padding: 10px;
+  border-radius: 10px;
+  width: 60%;
+  height: 70%;
+  overflow-y: auto;
+  margin: 9% 20% 0;
+}
+
+.aceitar-rgpd {
+  display: flex;
+  width: 80%;
+  align-items: center;
+  justify-content: center;
+}
+
+.aceitar-rgpd p {
+  margin-left: 1%;
+}

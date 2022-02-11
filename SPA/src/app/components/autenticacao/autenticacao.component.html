@@ -1,0 +1,107 @@
+
+
+
+
+<div class="pagina">
+    <div class="esquerda">
+
+        <div class="logo">
+            <h1>SocialNetwork</h1>
+            <h2>The Game</h2>
+        </div>
+
+        
+        <div class="dimensao">
+            <h3>Dimensão da Rede</h3>
+            <p>{{nrUtilizadores}}</p>
+        </div>
+        
+    </div>
+    
+    <div class="rpgd" *ngIf="rgpd">
+        <app-rpgd (janelaAberta)="setJanela($event)"></app-rpgd>
+    </div>
+
+<div class="direita">
+
+    <div class="login">
+
+
+        <form [formGroup]="formLogin" (ngSubmit) = "fazerLogin()">
+
+            <div class="inp">
+                <img src="../../../assets/email-branco.png" alt="login-logo">
+                <input type="email" formControlName="email" placeholder="Email">
+            </div>
+
+            <div class="inp">
+                <img src="../../../assets/password-branco.png" alt="password-logo">
+                <input type="password" formControlName="password" placeholder="Password">
+            </div>
+
+            <button type="submit" [disabled]="!formLogin.valid">Login</button>  
+        </form>
+    </div>
+
+
+    <div class="registo">
+        <div class="texto-introdutorio">
+            <h1>Ainda não possui conta?</h1>
+            <h2>Crie uma conta em segundos e aceda ás principais funcionalidades da aplicação.</h2>
+        </div>
+
+        <form [formGroup]="formRegisto" (ngSubmit)="fazerRegisto()">
+            <div class="inp">
+                <img src="../../../assets/email.png" alt="login-logo">
+                <input type="email" formControlName="email" placeholder="Email">
+            </div>
+
+            <div class="inp">
+                <img src="../../../assets/nome.png" alt="nome-logo">
+                <input type="text" formControlName="nome" placeholder="Nome">
+            </div>
+
+            <div class="inp">
+                <img src="../../../assets/nascimento.png" alt="dataNascimento-logo">
+                <input type="date" formControlName="dataNascimento" placeholder="Data Nascimento">
+            </div>
+
+            <div class="inp">
+                <img src="../../../assets/emocao.png" alt="estadoEmocional-logo">
+                <select formControlName="estadoEmocional" >
+                    <option value="" disabled selected>Estado Emocional</option>
+                    <option *ngFor="let emocao of estadosEmocionais" [value]="emocao">{{ emocao }}</option>
+                </select>
+            </div>
+
+            <div class="inp">
+                <img src="../../../assets/tags.png" alt="tags-logo">
+                <input type="text" formControlName="tags" placeholder="Tags (separadas por virgula)">
+            </div>
+
+            <div class="inp">
+                <img src="../../../assets/password.png" alt="password-logo">
+                <input type="password" formControlName="password" placeholder="Password">
+            </div>
+
+            <div class="inp">
+                <img src="../../../assets/password.png" alt="password-logo">
+                <input type="password" formControlName="confirmarPassword" placeholder="Confirmar Password">
+            </div>
+
+            <div class="aceitar-rgpd">
+                <input type="checkbox" formControlName="gdprCheck" name="checkRegister">
+                <p>Li, compreendi e aceito a Politica de Privacidade</p>
+            </div>
+             
+            <a role="button" (click)="rpgd()" style="cursor: pointer;">Política de Privacidade.</a>
+           
+            
+            <br>
+
+            <button type="submit" [disabled]="!formRegisto.valid">Registar</button>   
+        </form>
+    </div>
+</div>
+
+</div>

@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "94ad3ad6-c009-4880-8168-51a20755dfbe": {
+      "ProjectGuid": "94ad3ad6-c009-4880-8168-51a20755dfbe",
+      "DisplayName": "MDR",
+      "ColorIndex": 0
+    },
+    "7f84a2fa-b92d-4649-883a-968e3dcfac5b": {
+      "ProjectGuid": "7f84a2fa-b92d-4649-883a-968e3dcfac5b",
+      "DisplayName": "Tests",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Arquivos Diversos",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 2
+}

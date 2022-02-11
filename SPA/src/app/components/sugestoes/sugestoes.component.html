@@ -1,0 +1,119 @@
+<div class="pagina">
+
+    <div class="topo">
+        <div class="tipo-sugestao">
+            <h2><b>Tipo de Sugestão:</b></h2>
+            <select (change) ="alterarTipoSugestao($any($event.target).value)">
+                <option *ngFor="let tipo of tiposSugestao">{{tipo}}</option>
+            </select>
+        </div>
+
+        <div class="parametros-sugestao">
+            <div class="grupo" *ngIf="tipoSugestaoSelecionada=='Grupos'">
+                <div class="seccao">
+                    <h2><b>Utilizadores:</b></h2>
+                    <input type="number" value="1" max="5" min="1" (change)="alterarNumeroUtilizadoresGrupo($any($event.target).value)">    
+                </div>
+
+                <div class="seccao">
+                    <h2><b>Tags em comum:</b></h2>
+                    <input type="number" value="1" max="5" min="1" (change)="alterarNumeroTagsEmComumGrupo($any($event.target).value)"> 
+                </div>
+
+
+                <div class="seccao">
+                    <h2><b>Tags obrigatórias:</b></h2>
+                    <input type="text" (change)="alterarTagsObrigatoriasGrupo($any($event.target).value)"> 
+                </div>
+
+
+            </div>
+
+            <div class="utilizador" *ngIf="tipoSugestaoSelecionada=='Utilizadores'">
+                <div class="seccao">
+                    <h2><b>Tags em comum:</b></h2>
+                    <input type="number" value="1" max="5" min="1" (change)="alterarNumeroTagsEmComumUtilizador($any($event.target).value)"> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="restante" *ngIf="(tipoSugestaoSelecionada == 'Utilizadores' && !aProcurarSugestoesUtilizador && sugestoesUtilizadores.length > 0) || (tipoSugestaoSelecionada == 'Grupos' && !aProcurarSugestoesGrupos && sugestoesGrupos.length > 0)">
+      <div class="grupos" *ngIf="tipoSugestaoSelecionada=='Grupos'">
+          <div class="oGrupo" *ngFor="let grupo of sugestoesGrupos; let i=index">
+
+            <div class="principal">
+                <div class="nomeDoGrupo">
+                    <p>Grupo {{i + 1}}</p>
+                  </div>
+    
+                  <div class="imagensDosUtilizadores">
+                      <img src="../../../assets/{{utilizador.avatar}}" *ngFor="let utilizador of grupo.grupo">
+                  </div>
+    
+    
+                  <div class="tagsDosUtilizadores">
+                        <p *ngFor="let tag of grupo.tagsEmComum">{{tag}}</p>
+                  </div>
+    
+                  <div class="verMais">
+                      <img src="../../../assets/colapsar.png" *ngIf="grupo.verDetalhes" (click)="verDetalhes(grupo)">
+                      <img src="../../../assets/expandir.png" *ngIf="!grupo.verDetalhes" (click)="verDetalhes(grupo)">
+                  </div>
+            </div>
+            
+            <div class="detalhes" *ngIf="grupo.verDetalhes">
+                <div class="utilizadorDoGrupo" *ngFor="let utilizador of grupo.grupo" (click)="irParaPerfil(utilizador.id)">
+                    <div class="infoPessoal">
+                        <img src="../../../assets/{{utilizador.avatar}}" alt="">
+                        <div class="infoUtilizador">
+                            <h2>{{utilizador.nome}}</h2>
+                            <p>{{utilizador.email}}</p>
+                        </div>
+                    </div>
+
+                    <div class="tags">
+                        <p *ngFor="let tag of utilizador.tags">{{tag}}</p>
+                    </div>
+                 
+                </div>
+            </div>
+
+              
+          </div>
+      </div>
+
+      <div class="utilizadores" *ngIf="tipoSugestaoSelecionada=='Utilizadores'">
+        <div class="oUtilizador" *ngFor="let utilizador of sugestoesUtilizadores" (click)="irParaPerfil(utilizador.id)">
+            <div class="infoPessoal">
+                <img src="../../../assets/{{utilizador.avatar}}" alt="">
+                <div class="infoUtilizador">
+                    <h2>{{utilizador.nome}}</h2>
+                    <p>{{utilizador.email}}</p>
+                </div>
+            </div>
+
+            <div class="tags">
+                <p *ngFor="let tag of utilizador.tags">{{tag}}</p>
+            </div>
+
+
+        </div>
+      </div>
+
+    
+    </div>
+
+    <div class="aProcurar" *ngIf="aProcurarSugestoesGrupos || aProcurarSugestoesUtilizador">
+        <p>A procurar...</p>
+        <div class="loader"></div>
+    </div>
+    
+    <div class="semResultados" *ngIf="(tipoSugestaoSelecionada == 'Utilizadores' && !aProcurarSugestoesUtilizador && sugestoesUtilizadores.length == 0) || (tipoSugestaoSelecionada == 'Grupos' && !aProcurarSugestoesGrupos && sugestoesGrupos.length == 0)">
+        <p>Não foram encontrados resultados para a pesquisa.</p>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,55 @@
+
+<div class="pagina">
+
+    <div class="cabecalho" *ngIf="amigos && amigos.length > 0">
+        <h2 class="u">Utilizador</h2>
+        <h2 class="t">Tags</h2>
+        <h2 class="l">Força de Ligação</h2>
+        <h2 class="r">Força de Relação</h2>
+    </div>
+
+
+    <div class="ligacao" *ngFor="let amigo of amigos">
+        
+        <img src="../../../assets/{{amigo.utilizadorB.avatar}}" (click)="irParaPerfil(amigo.utilizadorB.id)" class="avatar">
+    
+        <div class="nomes">
+            <h2>{{amigo.utilizadorB.nome}}</h2>
+            <h3>{{amigo.utilizadorB.email}}</h3>
+        </div>
+    
+        <div class="info">
+    
+            <div class="tags">
+                <p *ngFor="let tag of amigo.tags" >{{tag}}</p>
+            </div>
+            
+        </div>
+    
+        <div class="info">
+            <p>{{amigo.forcaLigacao}}</p>
+        </div>
+    
+        <div class="info">
+            <p>{{amigo.forcaRelacao}}</p>
+        </div>
+        <img src="../../../assets/edit_azul.png" (click)="editarLigacao(amigo)" title="Editar ligação" class="botao-editar">
+        
+        
+    </div>
+
+
+    <div class="editar-ligacao" *ngIf="janelaEditarLigacao">
+        <app-editar-ligacao [ligacao] = "ligacaoParaEditar" (janelaAberta)="setJanelaEditarLigacao($event)"></app-editar-ligacao>
+    </div>
+
+    <div class="semResultados" *ngIf="amigos && amigos.length == 0">
+        <p>Não possui nenhum amigo no momento.</p>
+    </div>
+
+    <div class="aProcurar" *ngIf="!amigos">
+        <p>A procurar...</p>
+        <div class="loader"></div>
+    </div>
+</div>
+

@@ -1,0 +1,58 @@
+
+    <div class="topo">
+        <h1>Pedidos</h1>
+        <select (change) ="alterarTipoPedido($any($event.target).value)">
+            <option *ngFor="let tipo of tiposPedido">{{tipo}}</option>
+        </select>
+    </div>
+
+    <hr>
+    
+
+<div class="main">
+    <div class="pedidos" *ngIf="!aCarregarPedidos" >
+        
+        <div *ngFor = "let pedido of pedidos" class="pedido">
+            <div class="o-pedido">
+                <img src="../../../assets/{{pedido.deUtilizador.avatar}}" class="avatar" (click)="irParaPerfil(pedido.deUtilizador.id)">
+            
+                <div class="info-pedido">
+                    <h2>{{pedido.deUtilizador.nome}}</h2>
+                    <p>{{pedido.mensagem}}</p>
+                </div>
+    
+                <div class="opcoes">
+                    <img src="../../../assets/recusar.png" title="Recusar pedido" class="opcao" (click)="recusarPedido(pedido)">
+                    <img src="../../../assets/aceitar.png" title="Aceitar pedido" class="opcao" (click)="aceitarPedido(pedido)">
+                </div>
+            </div>
+        </div>
+
+        <div class="sem-pedidos" *ngIf="pedidos.length == 0">
+            <p *ngIf="tipoPedidoSelecionado=='Introdução'">Não tem pedidos de introdução novos.</p>
+            <p *ngIf="tipoPedidoSelecionado=='Ligação'">Não tem pedidos de ligação novos.</p>
+        </div>
+      
+    </div>
+
+    <div class="aCarregar" *ngIf="aCarregarPedidos">
+        <p>A carregar pedidos...</p>
+        <div class="loader"></div>
+    </div>
+
+    <div class="ver-mais">
+        <hr>
+        <a href="pedidos">Ver Todos</a>
+    </div>
+
+    <div class="aceitar-pedido-ligacao" *ngIf="pretendeAceitarPedidoLigacao">
+        <app-aceitar-pedido-ligacao [pedido]="pedidoParaAceitar" (janelaAberta)="respostaAoPedidoLigacao($event)"></app-aceitar-pedido-ligacao>
+    </div>
+
+
+</div>
+
+    
+
+
+

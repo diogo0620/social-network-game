@@ -1,0 +1,72 @@
+<div class="pagina">
+
+    <div class="topo">
+        <app-menu-topo-utilizador></app-menu-topo-utilizador>
+    </div>
+    
+
+    <div class="restante-pagina">
+        <div class="esquerda">  
+            <img src="../../../assets/leaderboard.png" alt="">
+            <p (click)="opcao(1)" [ngClass]="opcaoStyle[1]"><b>Dimensão</b></p>
+            <p (click)="opcao(2)" [ngClass]="opcaoStyle[2]"><b>Fortaleza</b></p>
+            <p (click)="opcao(3)" [ngClass]="opcaoStyle[3]"><b>Cloud de Tags (utilizadores)</b></p>
+            <p (click)="opcao(4)" [ngClass]="opcaoStyle[4]"><b>Cloud de Tags (ligações)</b></p>
+
+        </div>
+
+
+        <div class="direita" *ngIf="!aCarregar && (opcaoDimensao || opcaoFortaleza)">
+            <div class="cabecalho">
+                <h2 class="p">Posição</h2>
+                <h2 class="u">Utilizador</h2>
+                <h2 class="d">Dimensão</h2>
+                <h2 class="f">Fortaleza</h2>
+            </div>
+
+
+            <div [ngClass]="classificacaoStyle[i]" *ngFor="let cl of classificacoes; let i=index" (click)="irParaPerfil(cl.utilizador.id)">
+                <div class="posicao">
+                    <img src="../../../assets/primeiro_lugar.png" *ngIf="i == 0">
+                    <img src="../../../assets/segundo_lugar.png" *ngIf="i == 1">
+                    <img src="../../../assets/terceiro_lugar.png" *ngIf="i == 2">
+                    <p *ngIf="i > 2">{{i+1}}.</p>
+                </div>
+
+                <div class="info-pessoal">
+                    <h2>{{cl.utilizador.nome}}</h2>
+                    <p>{{cl.utilizador.email}}</p>
+                </div>
+
+                <div class="pontos">
+                    <p><b>{{cl.dimensao}}</b></p>
+                </div>
+
+                <div class="pontos">
+                    <p><b>{{cl.fortaleza}}</b></p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="direita" *ngIf="opcaoCloudTagsUtilizadores">
+            <app-cloud-tags [tipoDeTags] = "2"></app-cloud-tags>
+        </div>
+
+        <div class="direita" *ngIf="opcaoCloudTagsLigacoes">
+            <app-cloud-tags [tipoDeTags] = "4"></app-cloud-tags>
+        </div>
+
+        <div class="aCarregar" *ngIf="aCarregar && (opcaoDimensao || opcaoFortaleza)">
+            <p>A calcular...</p>
+            <div class="loader"></div>
+        </div>
+
+    
+
+       
+   </div>
+
+
+
+</div>

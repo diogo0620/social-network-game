@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Esse arquivo é usado pelo processo de publicação/pacote do seu projeto Web. É possível personalizar o comportamento deste processo
+ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAo0pd3OK5mUKM6qgT50W/KAAAAAACAAAAAAAQZgAAAAEAACAAAACCz9O5fZPAQwopGjiWxXMte/fqNd+OvOonREuqLZ75zAAAAAAOgAAAAAIAACAAAABPuxMxb+4UKiz0BkDZD0uxbuVdACPYNcSNnZuBhbYhxIAAAAAIiAHsa8zrBR58PV9wzsRcajNGGpULPmSX6Yn3R7mXIF4spUJwkZuMllcdDCJJSq7Rk8Q3utx/dH1nUwgcSUn8VEaY9lT2HAw/bn9O2Mntf+Od355Ru3e5XlR3FT1ZStBS9lSAiYUfzudKoQihOleMI70KqUZ9GMU4Vp4HeO4Ae0AAAACLfyhMlgIhcFnoWZBkVP1wzGra7YCi9uodl73DdAa6fM3vVagrw8cLcpMfj2zEfTUZpSApb4EWkkjmFMXzEp30</EncryptedPassword>
+    <History>True|2022-01-03T12:41:12.5287591Z;True|2022-01-03T12:33:32.9215022+00:00;False|2022-01-03T12:22:34.8523769+00:00;True|2021-12-23T14:38:20.4561294+00:00;True|2021-12-06T19:53:17.0318180+00:00;False|2021-12-06T19:38:16.1400312+00:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <EFMigrations Include="MDR.Infrastructure.MDRDbContext">
+      <Value>Data Source=tcp:mdrdbserver.database.windows.net,1433%3bInitial Catalog=MDR_db%3bUser Id=g27%40mdrdbserver%3bPassword=lapr5_DDHR</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

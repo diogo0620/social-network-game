@@ -1,0 +1,78 @@
+<div class="pagina">
+
+    <div class="topo">
+        <h2><b>Ligação com {{ligacao.utilizadorB.nome}}</b></h2>
+    </div>
+    
+    <div class="restante">
+        <div class="tags">
+            <h2>Tags</h2>
+            <div class="t">
+                <p *ngFor="let tag of ligacao.tags">{{tag}}</p>
+            </div>
+            
+        </div>
+    
+        <div class="forcaLigacao">
+            <h2>Força de Ligação</h2>
+
+            <div class="forca">
+                <p>0</p>
+                <div class="barraTotal">
+                    <div class="pouca-ligacao" [style.width.%]="ligacao.forcaLigacao" *ngIf="ligacao.forcaLigacao < 33">
+                        <p>asa</p>
+                    </div>
+
+                    <div class="media-ligacao" [style.width.%]="ligacao.forcaLigacao" *ngIf="ligacao.forcaLigacao >= 33 && ligacao.forcaLigacao < 66">
+                        <p>asa</p>
+                    </div>
+
+                    <div class="muita-ligacao" [style.width.%]="ligacao.forcaLigacao" *ngIf="ligacao.forcaLigacao >= 66">
+                        <p>asa</p>
+                    </div>
+                </div>
+                <p>100</p>
+            </div>
+
+            <p class="aForcaDeLigacao"><b>{{ligacao.forcaLigacao}}</b></p>
+       
+        </div>
+    
+        <div class="forcaRelacao">
+            <h2>Força de Relação</h2>
+
+            <div class="grafico">
+                <div class="info">
+                    <p>Likes</p>
+                    <p>Dislikes</p>
+                </div>
+
+                <div class="vl"></div>
+
+                <div class="barras">
+
+                    <div class="likes">
+                        <div class="like" *ngIf="ligacao.numeroLikes >= ligacao.numeroDislikes" [style.width.%]="100"></div>
+                        <div class="like" *ngIf="ligacao.numeroLikes <  ligacao.numeroDislikes" [style.width.%]="ligacao.numeroLikes / ligacao.numeroDislikes * 100"></div>
+                        <p>{{ligacao.numeroLikes}}</p>
+                    </div>
+               
+    
+                    <div class="dislikes">
+                        <div class="dislike" *ngIf="ligacao.numeroDislikes >= ligacao.numeroLikes" [style.width.%]="100"></div>
+                        <div class="dislike" *ngIf="ligacao.numeroDislikes <  ligacao.numeroLikes" [style.width.%]="ligacao.numeroDislikes / ligacao.numeroLikes * 100"></div>
+                    
+                        
+                        <p>{{ligacao.numeroDislikes}}</p>
+                    </div>
+            
+                </div>
+           
+            </div>
+
+            <p class="aForcaDeLigacao"><b>{{ligacao.forcaRelacao}}</b></p>
+        </div>
+    </div>
+
+
+</div>

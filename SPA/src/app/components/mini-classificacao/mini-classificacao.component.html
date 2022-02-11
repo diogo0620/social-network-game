@@ -1,0 +1,51 @@
+
+<div class="pagina">
+    <div class="topo">
+        <h1>Classificação</h1>
+        <select (change) ="alterarTipoClassificacao($any($event.target).value)">
+            <option *ngFor="let tipo of tipoClassificacao">{{tipo}}</option>
+        </select>
+
+    </div>
+    <hr>
+
+
+    <div class="main" *ngIf="!aCarregar">
+        <div *ngFor="let cl of classificacao; let i=index" [ngClass]="opcaoStyle[i]" (click)="irParaPerfil(cl.utilizador.id)">
+            <div class="posicao">
+                <img src="../../../assets/primeiro_lugar.png" *ngIf="i == 0">
+                <img src="../../../assets/segundo_lugar.png" *ngIf="i == 1">
+                <img src="../../../assets/terceiro_lugar.png" *ngIf="i == 2">
+                <p *ngIf="i > 2">{{i+1}}.</p>
+            </div>
+  
+
+            <div class="info-pessoal">
+                <h2>{{cl.utilizador.nome}}</h2>
+                <p>{{cl.utilizador.email}}</p>
+            </div>
+
+            <div class="pontos">
+                <p *ngIf="tipoClassificacaoSelecionada == 'Dimensão'"><b>{{cl.dimensao}}</b></p>
+                <p *ngIf="tipoClassificacaoSelecionada == 'Fortaleza'"><b>{{cl.fortaleza}}</b></p>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="aCarregar" *ngIf="aCarregar">
+        <p>A calcular classificações...</p>
+        <div class="loader"></div>
+    </div>
+
+
+
+    <div class="ver-mais">
+        <hr>
+        <a href="classificacao">Ver Mais</a>
+    </div>
+    
+    
+</div>
+
+

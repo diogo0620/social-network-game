@@ -1,0 +1,93 @@
+<div class="pagina">
+    <div class="seccao">
+        <h2>Informação Básica</h2>
+            <hr>
+            <div class="subseccao">
+                <div class="form-seccao">
+                    <h3>Email:</h3>
+                    <p>{{uti.email}}</p>
+                </div>
+
+                <div class="form-seccao">
+                    <h3>Nome:</h3>
+                    <p>{{uti.nome}}</p>
+                </div>
+
+                <div class="form-seccao">
+                    <h3>Data Nascimento:</h3>
+                    <p>{{uti.dataNascimento}}</p>
+                </div>
+
+                <div class="form-seccao" *ngIf="uti.descricao != null">
+                    <h3>Descrição:</h3>
+                    <p>{{uti.descricao}}</p>
+                </div>
+            </div>
+    </div>
+
+    <div class="seccao">
+        <h2>Tags</h2>
+        <hr>
+        <div class="subseccao">
+            <div class="tags">
+                <p *ngFor="let tag of uti.tags">{{tag}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="seccao">
+        <h2>Estado Emocional</h2>
+        <hr>
+        <div class="subseccao">
+            <div class="form-seccao">
+                <h3>Emoção:</h3>
+                <p>{{uti.estadoEmocional}} (Atualizado em {{uti.dataEstadoEmocional}})</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="seccao" *ngIf="uti.pais != null || uti.cidade != null">
+        <h2>Localização</h2>
+        <hr>
+        <div class="subseccao">
+            <div class="form-seccao" *ngIf="uti.pais != null">
+                <h3>País:</h3>
+                <p>{{uti.pais}}</p>
+            </div>
+
+            <div class="form-seccao" *ngIf="uti.cidade != null">
+                <h3>Cidade:</h3>
+                <p>{{uti.cidade}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="seccao" *ngIf="uti.codigoPais != null || uti.numeroTelemovel != null">
+        <h2>Contacto</h2>
+        <hr>
+        <div class="subseccao">
+            <div class="form-seccao" *ngIf="uti.codigoPais != null"> 
+                <h3>Codigo País:</h3>
+                <p>{{uti.codigoPais}}</p>
+            </div>
+
+            <div class="form-seccao" *ngIf="uti.numeroTelemovel != null">
+                <h3>Número:</h3>
+                <p>{{uti.numeroTelemovel}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="seccao">
+        <div class="redes-sociais">
+            <img src="../../../assets/facebook.png" *ngIf="uti.facebook != null" (click)="abrirPagina(uti.facebook)">
+            <img src="../../../assets/linkedin.png" *ngIf="uti.linkedIn != null" (click)="abrirPagina(uti.linkedIn)">
+        </div> 
+    </div>
+
+
+
+
+
+
+</div>

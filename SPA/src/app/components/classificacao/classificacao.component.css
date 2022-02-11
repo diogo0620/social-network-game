@@ -1,0 +1,245 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.pagina {
+  height: 100vh;
+  width: 100%;
+  background: rgb(223, 223, 223);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.topo {
+  height: 7%;
+  width: 100%;
+  background-image: url(../../../assets/background.jpg);
+  background-size: cover;
+}
+.restante-pagina {
+  width: 100%;
+  height: 100%;
+  max-height: 93%;
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 100px;
+}
+
+.esquerda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 22%;
+  border-radius: 10px;
+}
+
+.direita {
+  height: 100%;
+  width: 76%;
+}
+
+.aCarregar {
+  height: 100%;
+  width: 76%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.opcao-selecionada {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 2%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  cursor: pointer;
+  background-image: url(../../../assets/background.jpg);
+  background-size: cover;
+  color: white;
+}
+
+.opcao-nao-selecionada {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 2%;
+  border-radius: 10px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: white;
+  color: #20416a;
+  border: 2px solid #20416a;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.esquerda p:hover {
+  background-image: url(../../../assets/background.jpg);
+  background-position: center;
+  color: white;
+}
+
+.esquerda img {
+  width: 100%;
+  background-color: #20416a;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  background-color: #20416a;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.cabecalho h2 {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.2rem;
+  color: white;
+  text-align: center;
+}
+
+.p {
+  width: 10%;
+}
+
+.u {
+  width: 23%;
+}
+
+.d {
+  width: 20%;
+}
+
+.f {
+  width: 20%;
+}
+
+.utilizador {
+  width: 99%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5px 10px 5px 0;
+  cursor: pointer;
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
+.utilizador img {
+  width: 40px;
+}
+
+.utilizador-autenticado {
+  width: 99%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5px 10px 5px 0;
+  cursor: pointer;
+  background-color: rgb(161, 161, 161);
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
+.utilizador-autenticado img {
+  width: 40px;
+}
+
+.posicao {
+  height: 100%;
+  width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-pessoal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 23%;
+  max-width: 23%;
+}
+
+.info-pessoal h2 {
+  font-size: 1rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.info-pessoal p {
+  font-size: 0.8rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.pontos {
+  width: 20%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 20px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #20416a;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #6b6b6b;
+}
+
+.loader {
+  margin-top: 2%;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #20416a;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

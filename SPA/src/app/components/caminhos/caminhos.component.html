@@ -1,0 +1,161 @@
+<div class="pagina">
+
+    <div class="topo">
+        <div class="tipo-caminho">
+            <h2><b>Tipo de Caminho:</b></h2>
+            <select (change) ="alterarTipoCaminho($any($event.target).value)" [(ngModel)]="tipoCaminhoSelecionado">
+                <option *ngFor="let tipo of tiposCaminho">{{tipo}}</option>
+            </select>
+        </div>
+
+        <div class="forca-minima" *ngIf="tipoCaminhoSelecionado == 'Mais Seguro'">
+            <h2><b>Custo Mínimo:</b></h2>
+            <input type="number" value="1" max="100" min="1" (change)="alterarForcaMinimaLigacao($any($event.target).value)">
+        </div>
+
+        <div class="definicoes">
+            <img src="../../../assets/definicoes.png" (click)="janelaDefinicoes()">
+        </div>
+    </div>
+
+
+    <div class="janelaDefinicoes" *ngIf="definicoes">
+        <div class="topo-definicoes">
+            <h2>Definições de caminhos</h2>
+        </div>
+
+        <div class="main-definicoes">
+
+            <div class="tipoAlgoritmo">
+                <p class="tit"><b>Algoritmo</b></p>
+                <div class="algoritmos">
+                    <div class="algoritmo">
+                        <p>DFS</p>
+                        <input type="checkbox" [(ngModel)]="dfs" (change)="alterarAlgoritmo(1)">
+                    </div>
+
+                    <div class="algoritmo">
+                        <p>A*</p>
+                        <input type="checkbox" [(ngModel)]="aStar" (change)="alterarAlgoritmo(2)">
+                    </div>
+
+                    <div class="algoritmo">
+                        <p>Best First</p>
+                        <input type="checkbox" [(ngModel)]="bestFS" (change)="alterarAlgoritmo(3)">
+                    </div>
+                </div>
+            </div>
+
+            <div class="maximo-ligacoes">
+                <p>Máximo de ligações</p>
+                <input type="number" min="1" [(ngModel)]="maximoLigacoes">
+            </div>
+
+
+            <div class="considerar-estados-emocionais">
+                <p>Considerar forças de relação</p>
+                <input type="checkbox" [(ngModel)]="considerarForcaRelacao">
+            </div>
+    
+            <div class="considerar-estados-emocionais">
+                <p>Considerar estados emocionais</p>
+                <input type="checkbox" [(ngModel)]="considerarEstadosEmocionais">
+            </div>
+
+            <div class="apresentarEstadosEmocionais" *ngIf="considerarEstadosEmocionais">
+                <p class="titulo">• Selecione as emoções que pretende proibir</p>
+
+                <div class="emocao" *ngFor="let emocao of emocoes; let i=index">
+                    <p>{{emocao}}</p>
+                    <input type="checkbox" [(ngModel)]="emocaoProibida[i]">
+                </div>
+            </div>
+    
+          
+        </div>
+
+        <div class="botoes">
+            <button style="background-color: firebrick;margin-right: 5px; " (click)="fecharDefinicoes()"><b>Fechar</b></button>
+            <button style="background-color: forestgreen;" (click)=guardarDefinicoes()><b>Guardar</b></button>
+        </div>
+
+        
+
+ 
+    </div>
+
+    <div class="meio" *ngIf="caminho.ligacoes.length > 0">
+        <div class="info-caminho">
+            <h3><b>Número de Nós</b></h3>
+            <p>{{caminho.numeroNos}}</p>
+        </div>
+
+        <div class="info-caminho">
+            <h3><b>Força de Ligação Total</b></h3>
+            <p>{{caminho.forcaLigacaoTotal}}</p>
+        </div>
+
+        <div class="info-caminho">
+            <h3><b>Força de Relação Total</b></h3>
+            <p>{{caminho.forcaRelacaoTotal}}</p>
+        </div>
+
+        <div class="info-caminho" *ngIf="dfs">
+            <h3><b>Custo Mínimo</b></h3>
+            <p>{{caminho.custoMinimo}}</p>
+        </div>
+
+        <div class="info-caminho">
+            <h3><b>Custo Total</b></h3>
+            <p>{{caminho.custoTotal}}</p>
+        </div>
+    </div>
+
+    <div class="meio-baixo" *ngIf="caminho.ligacoes.length > 0">
+        <div class="opcao-visualizacao">
+            <p>Forca de Ligação</p>
+        </div>
+
+        <div class="opcao-visualizacao">
+            <p>Forca de Relação</p>
+        </div>
+    </div>
+
+    <div class="baixo" *ngIf="caminho.ligacoes.length > 0">
+        <div class="no" *ngFor="let no of caminho.ligacoes; let i=index">
+
+            <div class="utilizadorEemocao" *ngIf="i == 0">
+                <img src="../../../assets/emocao_{{no.utilizadorA.estadoEmocional.toLowerCase()}}.png" title="{{no.utilizadorA.estadoEmocional}}">
+                <p class="utilizador" style="cursor: default;">Eu</p>
+            </div>
+            
+            <div class="info-ligacao">
+                <p class="forcaLigacao">{{no.forcaLigacao}}</p>
+                <img src="../../../assets/seta_direita_azul.png">
+                <p class="forcaRelacao">{{no.forcaRelacao}}</p>
+            </div>
+            
+            <div class="utilizadorEemocao">
+                <img src="../../../assets/emocao_{{no.utilizadorB.estadoEmocional.toLowerCase()}}.png" title="{{no.utilizadorB.estadoEmocional}}">
+                <p class="utilizador" (click)="irParaPerfil(no.utilizadorB.id)">{{no.utilizadorB.nome}}</p>
+            </div>
+            
+        </div>
+        
+    </div>
+
+    <div class="a-calcular" *ngIf="aCalcular">
+        <p>A calcular caminho...</p>
+        <div class="loader"></div>
+    </div>
+
+    <div class="sem-caminho" *ngIf="caminho.ligacoes.length == 0 && !aCalcular">
+        <p>Não foi possivel encontrar um caminho para este utilizador.</p>
+    </div>
+
+
+
+
+
+
+</div>

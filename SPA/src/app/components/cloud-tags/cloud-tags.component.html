@@ -1,0 +1,17 @@
+<div class="pagina" #cloudWindow>
+
+    <div class="aProcurar" *ngIf="!tagsCarregadas">
+        <p>A procurar...</p>
+        <div class="loader"></div>
+    </div>
+
+    <div class="semTags" *ngIf="tagsCarregadas && cloud.length == 0">
+        <p>Não existem tags para apresentar.</p>
+    </div>
+
+    <div class="cloud" *ngIf="tagsCarregadas && cloud.length > 0">
+        <angular-tag-cloud style="font: italic bold 12px 'Indie Flower', cursive" [data] ="dadosCloud" [overflow]=false [width]=larguraPagina [height]=alturaPagina [step]=8.0 [zoomOnHover]="zoomOnHoverOptions"></angular-tag-cloud>
+    </div>
+    
+
+</div>

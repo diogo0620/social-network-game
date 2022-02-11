@@ -1,0 +1,23 @@
+<div class="pagina">
+
+    <div class="cima">
+        <img src="../../../assets/{{utilizador.avatar}}" alt="avatar" *ngIf="utilizadorCarregado">
+        <input type="text" placeholder="Em que estás a pensar?" [(ngModel)]="texto">
+    </div>
+
+    <div class="baixo">
+        <div class="tags">
+            <p><b>Tags:</b></p>
+            <input type="text" placeholder="Separadas por virgula (ex: Desporto, Netflix)" [(ngModel)]="tags">
+        </div>
+
+
+        <button (click)="publicar()" *ngIf="!aEsperaDeResposta"><b>Publicar</b></button>
+        <div class="a-publicar" *ngIf="aEsperaDeResposta">
+            <p><b>A publicar...</b></p>
+            <div class="loader"></div>
+        </div>
+    </div>
+
+
+</div>

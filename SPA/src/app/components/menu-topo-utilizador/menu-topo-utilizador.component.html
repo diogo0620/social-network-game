@@ -1,0 +1,42 @@
+
+<div class="menu-topo">
+    <div class="logo" (click)="irParaInicio()">
+        <h1>SocialNetwork</h1>
+        <h2>The Game</h2>
+    </div>
+
+    <div class="menu-topo-pesquisa">
+        <input type="search" name="" id="" placeholder="Pesquisar..." (keyup)="especificarPesquisa($any($event.target).value)" (keyup.enter)="pesquisar()">
+        <img src="../../../assets/pesquisar-azul.png" (click)="pesquisar()">
+    </div>
+
+
+    <div class="menu-topo-opcoes">
+        <div class="opcao" (click)="irParaInicio()">
+            <img src="../../../assets/casa.png" alt="">
+            <p>Inicio</p>
+        </div>
+
+        <div class="opcao"(click)="irParaPerfil()">
+            <img src="../../../assets/perfil.png" alt="">
+            <p>Perfil</p>
+        </div>
+
+        <div class="opcao" (click)="irParaLigacoes()">
+            <img src="../../../assets/amigos.png" alt="">
+            <p>Ligações</p>
+        </div>
+
+        <div class="opcao" (click)="irParaPedidos()">
+            <img src="../../../assets/pedidos.png" alt="">
+            <p>Pedidos</p>
+        </div>
+
+        <div class="opcao" (click)="irParaClassificacao()">
+            <img src="../../../assets/classificacao.png" alt="">
+            <p>Classificação</p>
+        </div>
+    </div>
+
+    <button (click)="logout()">Logout</button>
+</div>

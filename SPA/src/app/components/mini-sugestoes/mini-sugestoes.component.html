@@ -1,0 +1,55 @@
+
+<div class="pagina">
+    <div class="topo">
+        <h1>Sugestões</h1>
+        <hr>
+    </div>
+    
+ 
+    
+    
+    <div class="sugestoes" *ngIf="!aCalcularSugestoes">
+        
+        <div *ngFor = "let sugestao of sugestoes" class="sugestao">
+                <img src="../../../assets/{{sugestao.utilizador.avatar}}" class="avatar" (click)="irParaPerfil(sugestao.utilizador.id)">
+            
+                <div class="info-sugestao">
+                    <h2>{{sugestao.utilizador.nome}}</h2>
+                    <p *ngIf="sugestao.amigosEmComum == 1">{{sugestao.amigosEmComum}} amigo em comum</p>
+                    <p *ngIf="sugestao.amigosEmComum > 1">{{sugestao.amigosEmComum}} amigos em comum</p>
+                    <p *ngIf="sugestao.amigosEmComum == 0">Novo utilizador</p>
+                </div>
+    
+                <div class="opcao">
+                    <img src="../../../assets/adicionar.png" title="Enviar pedido de ligação" (click)="fazerPedidoLigacao(sugestao.utilizador)">
+                </div>
+        </div>
+    
+        <div class="sem-utilizadores" *ngIf="sugestoes.length == 0">
+            <p>Não tem sugestões novas.</p>
+        </div>
+
+      
+    </div>
+
+    <div class="a-procurar" *ngIf="aCalcularSugestoes">
+        <p>A procurar sugestões...</p>
+        <div class="loader"></div>
+    </div>
+
+    <div class="popup" *ngIf="pretendeEnviarPedidoLigacao">
+        <app-fazer-pedido-ligacao [utilizador]="utilizadorAadicionar" (janelaAberta)="pedidoFeito($event)"></app-fazer-pedido-ligacao>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

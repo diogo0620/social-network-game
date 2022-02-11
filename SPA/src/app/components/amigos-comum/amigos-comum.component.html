@@ -1,0 +1,38 @@
+<div class="pagina" >
+    <div class="topo">
+        <h2><b>Lista de Amigos em Comum:</b></h2>
+    </div>
+    <div class="ligacao" *ngFor="let amigo of amigosEmComum" >
+        <img src="../../../assets/{{amigo.avatar}}">
+        <div class="nomes">
+            <p>{{amigo.nome}}</p>
+            <h3>{{amigo.email}}</h3>
+        </div>
+        <div class="info">
+            <h2>Tags</h2>
+    
+            <div class="tags" >
+                <p *ngFor="let tag of amigo.tags" >{{tag}}</p>
+            </div>
+            
+        </div>
+        <div class="info">
+            <h2>Estado Emocional</h2>
+    
+            <div class="tags" >
+                <p >{{amigo.estadoEmocional}}</p>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="a-procurar" *ngIf="aProcurar">
+        <p>A procurar amigos em comum...</p>
+        <div class="loader"></div>
+    </div>
+
+    <div class="sem-amigos" *ngIf="amigosEmComum.length == 0 && !aProcurar">
+        <p>Não foi possivel encontrar amigos em comum.</p>
+    </div>
+
+</div>

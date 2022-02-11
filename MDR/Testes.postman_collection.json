@@ -1,0 +1,1305 @@
+{
+	"info": {
+		"_postman_id": "b4e5e243-78c4-4c36-b2a9-d60f776212ff",
+		"name": "Testes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get Utilizadores",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/Utilizadores/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Utilizadores",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create Utilizador",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.environment.set(\"uti_email\", \"helder.ajf@gmail.com\");\r",
+							"pm.environment.set(\"estado_emocional\", \"ALEGRE\");\r",
+							"pm.environment.set(\"uti_nome\", \"Helder\");\r",
+							"pm.environment.set(\"psw\", \"hhTGYg7hh&ddd\");\r",
+							"pm.environment.set(\"data_nascimento\",\"27/02/2000\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body returns the correct email\", function () {\r",
+							"    pm.expect(responseJson.email).to.eql(pm.environment.get(\"uti_email\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body returns the correct Password\", function () {\r",
+							"    pm.expect(responseJson.password).to.eql(pm.environment.get(\"psw\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body returns the correct BirthDate\", function () {\r",
+							"    pm.expect(responseJson.dataNascimento).to.eql(pm.environment.get(\"data_nascimento\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body returns the correct Name\", function () {\r",
+							"    pm.expect(responseJson.nome).to.eql(pm.environment.get(\"uti_nome\"));\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.globals.set(\"utilizador_id\", responseJson.id); // save the category's id for further tests\r",
+							"\r",
+							"console.log(pm.globals.get(\"utilizador_id\"));    "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"{{uti_email}}\",\r\n    \"estadoEmocional\":\"{{estado_emocional}}\",\r\n    \"password\":\"{{psw}}\",\r\n    \"nome\":\"{{uti_nome}}\",\r\n    \"dataNascimento\":\"{{data_nascimento}}\",\r\n    \"tags\":[\"AAA\",\"BBB\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/Utilizadores/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Utilizadores",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Utilizador Just Created",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"\r",
+							"console.log(pm.globals.get(\"utilizador_id\"));\r",
+							"\r",
+							"pm.test(\"User creation returns status 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Returned User has correct user_id\", function () {\r",
+							"    pm.expect(responseJson.id).to.eql(pm.globals.get(\"utilizador_id\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Returned User has correct email\", function () {\r",
+							"    pm.expect(responseJson.email).to.eql(pm.environment.get(\"uti_email\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Returned User has correct password\", function () {\r",
+							"    pm.expect(responseJson.password).to.eql(pm.environment.get(\"psw\"));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/Utilizadores/{{utilizador_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Utilizadores",
+						"{{utilizador_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create Another Utilizador",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body returns the correct email\", function () {\r",
+							"    pm.expect(responseJson.email).to.eql(\"diogo@gmail.com\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body returns the correct Password\", function () {\r",
+							"    pm.expect(responseJson.password).to.eql(\"ghjJ7788h$hHHH\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body returns the correct BirthDate\", function () {\r",
+							"    pm.expect(responseJson.dataNascimento).to.eql(\"22/02/2000\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body returns the correct Name\", function () {\r",
+							"    pm.expect(responseJson.nome).to.eql(\"diogo\");\r",
+							"});\r",
+							"pm.test(\"Body return correct tags\", function () {\r",
+							"        pm.expect(responseJson.tags[0]).to.eql(\"AAA\");\r",
+							"        pm.expect(responseJson.tags[1]).to.eql(\"CCC\");\r",
+							"    });\r",
+							"\r",
+							"pm.globals.set(\"utilizador2_id\", responseJson.id); // save the category's id for further tests\r",
+							"\r",
+							"console.log(pm.globals.get(\"utilizador2_id\"));    "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"diogo@gmail.com\",\r\n    \"password\":\"ghjJ7788h$hHHH\",\r\n    \"nome\":\"diogo\",\r\n    \"dataNascimento\":\"22/02/2000\",\r\n    \"Tags\":[\"AAA\",\"CCC\"],\r\n    \"EstadoEmocional\":\"Alegre\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/Utilizadores/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Utilizadores",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create Another Utilizador 2",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body returns the correct email\", function () {\r",
+							"    pm.expect(responseJson.email).to.eql(\"diogo22@gmail.com\");\r",
+							"});\r",
+							"\r",
+							"pm.globals.set(\"utilizador3_id\", responseJson.id); // save the category's id for further tests\r",
+							"\r",
+							"console.log(pm.globals.get(\"utilizador3_id\"));    "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"diogo22@gmail.com\",\r\n    \"password\":\"ghjJ7788h$hHHH\",\r\n    \"nome\":\"diogo\",\r\n    \"dataNascimento\":\"22/02/2000\",\r\n    \"Tags\":[\"AAA\",\"CCC\"],\r\n    \"EstadoEmocional\":\"Alegre\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/Utilizadores/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Utilizadores",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post autenticacao utilizador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"\r",
+							"pm.globals.set(\"autenticacao\", responseJson.token); // save the category's id for further tests\r",
+							"\r",
+							"console.log(pm.globals.get(\"autenticacao\"));   "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"helder.ajf@gmail.com\",\r\n    \"password\":\"hhTGYg7hh&ddd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/autenticacao/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"autenticacao",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get PedidosLigacao",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"There are no Pedidos Ligacao\", function () {\r",
+							"    pm.response.to.have.body(\"[]\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{autenticacao}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/PedidosLigacao/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"PedidosLigacao",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post PedidoLigacao",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body returns the correct uti1 id\", function () {\r",
+							"    pm.expect(responseJson.DeUtilizadorId).to.eql(pm.globals.get(\"{{utilizador_id}}\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body returns the correct uti2 id\", function () {\r",
+							"    pm.expect(responseJson.ParaUtilizadorId).to.eql(pm.globals.get(\"{{utilizador2_id}}\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body returns the correct mensage\", function () {\r",
+							"    pm.expect(responseJson.mensagem).to.eql(\"ola\");\r",
+							"});\r",
+							"pm.globals.set(\"pedido_id\", responseJson.id); // save the category's id for further tests\r",
+							"\r",
+							"console.log(pm.globals.get(\"pedido_id\"));    "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{autenticacao}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"DeUtilizadorId\":\"{{utilizador_id}}\",\r\n    \"ParaUtilizadorId\":\"{{utilizador2_id}}\",\r\n    \"Mensagem\":\"ola\",\r\n    \"ForcaLigacao\":4,\r\n    \"Tags\":[\"AAA\",\"CCC\"]\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/PedidosLigacao/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"PedidosLigacao",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get PedidoLigacao Just Created",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"\r",
+							"console.log(pm.globals.get(\"utilizador_id\"));\r",
+							"\r",
+							"pm.test(\"Pedido Ligacao creation returns status 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Pedido Ligacao has correct pedido_id\", function () {\r",
+							"    pm.expect(responseJson.id).to.eql(pm.globals.get(\"pedido_id\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Pedido Ligacao has correct uti1\", function () {\r",
+							"    pm.expect(responseJson.DeUtilizadorId).to.eql(pm.globals.get(\"{{utilizador_id}}\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Pedido Ligacao has correct uti2\", function () {\r",
+							"    pm.expect(responseJson.ParaUtilizadorId).to.eql(pm.globals.get(\"{{utilizador2_id}}\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Pedido Ligacao has correct mensage\", function () {\r",
+							"        pm.expect(responseJson.mensagem).to.eql(\"ola\");\r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{autenticacao}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/PedidosLigacao/{{pedido_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"PedidosLigacao",
+						"{{pedido_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put PedidoLigacao accept",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Pedido Ligacao edited returns status 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Pedido Ligacao edited has correct status\", function () {\r",
+							"    pm.expect(responseJson.estado).to.eql(\"ACEITE\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{autenticacao}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Id\":\"{{pedido_id}}\",\r\n    \"Estado\":\"ACEITE\",\r\n    \"Tags\":[\"AAA\",\"CCC\"],\r\n    \"ForcaLigacao\":2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/PedidosLigacao/{{pedido_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"PedidosLigacao",
+						"{{pedido_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Ligacoes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"There are one Ligacao (accepted from PedidoLigacao)\", function () {\r",
+							"    pm.response.to.have.body();\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{autenticacao}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/Ligacoes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Ligacoes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post Ligacao",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							" "
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body returns the correct uti1 id\", function () {\r",
+							"    pm.expect(responseJson.UtilizadorAId).to.eql(pm.globals.get(\"{{utilizador_id}}\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body returns the correct uti2 id\", function () {\r",
+							"    pm.expect(responseJson.UtilizadorBId).to.eql(pm.globals.get(\"{{utilizador3_id}}\"));\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.globals.set(\"ligacao_id\", responseJson.id); // save the category's id for further tests\r",
+							"\r",
+							"console.log(pm.globals.get(\"ligacao_id\"));   "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{autenticacao}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"UtilizadorAId\":\"{{utilizador_id}}\",\r\n    \"UtilizadorBId\":\"{{utilizador3_id}}\",\r\n    \"ForcaLigacao\":4,\r\n    \"Tags\":[\"CAA\",\"CSC\"]\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/Ligacoes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Ligacoes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Ligacao Just Created",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Ligacao creation returns status 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ligacao has correct ligacao_id\", function () {\r",
+							"    pm.expect(responseJson.id).to.eql(pm.globals.get(\"ligacao_id\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ligacao has correct uti1\", function () {\r",
+							"    pm.expect(responseJson.UtilizadorAId).to.eql(pm.globals.get(\"{{utilizador_id}}\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ligacao has correct uti2\", function () {\r",
+							"    pm.expect(responseJson.UtilizadorBId).to.eql(pm.globals.get(\"{{utilizador3_id}}\"));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{autenticacao}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/Ligacoes/{{ligacao_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Ligacoes",
+						"{{ligacao_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put Ligacao edit",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Ligacao edited returns status 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ligacao edited has correct forcaLigacao\", function () {\r",
+							"    pm.expect(responseJson.forcaLigacao).to.eql(6);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ligacao edited has correct tags\", function () {\r",
+							"    pm.expect(responseJson.tags[0]).to.eql(\"ARP\");\r",
+							"    pm.expect(responseJson.tags[1]).to.eql(\"HMB\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{autenticacao}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Id\":\"{{ligacao_id}}\",\r\n    \"Tags\":[\"ARP\",\"HMB\"],\r\n    \"ForcaLigacao\":6\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/Ligacoes/{{ligacao_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Ligacoes",
+						"{{ligacao_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post autenticacao utilizador2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"\r",
+							"pm.globals.set(\"autenticacao2\", responseJson.token); // save the category's id for further tests\r",
+							"\r",
+							"console.log(pm.globals.get(\"autenticacao2\"));  "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"diogo@gmail.com\",\r\n    \"password\":\"ghjJ7788h$hHHH\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/autenticacao/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"autenticacao",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get PedidosIntroducao",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"There are no Pedidos Introducao\", function () {\r",
+							"    pm.response.to.have.body(\"[]\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{autenticacao2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/PedidosIntroducao/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"PedidosIntroducao",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post PedidoIntroducao",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"mensagem\", \"ola utilizador\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body returns the correct uti1 id\", function () {\r",
+							"    pm.expect(responseJson.DeUtilizadorId).to.eql(pm.globals.get(\"{{utilizador3_id}}\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body returns the correct uti2 id\", function () {\r",
+							"    pm.expect(responseJson.ParaUtilizadorId).to.eql(pm.globals.get(\"{{utilizador_id}}\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body returns the correct objective uti id\", function () {\r",
+							"    pm.expect(responseJson.UtilizadorObjetivoId).to.eql(pm.globals.get(\"{{utilizador2_id}}\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body returns the correct mensage\", function () {\r",
+							"    pm.expect(responseJson.MensagemLigacao).to.eql(pm.environment.get(\"{{mensagem}}\"));\r",
+							"});\r",
+							"\r",
+							"pm.globals.set(\"pedidoIntroducao_id\", responseJson.id); // save the category's id for further tests\r",
+							"\r",
+							"console.log(pm.globals.get(\"pedidoIntroducao_id\"));   "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{autenticacao2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"DeUtilizadorId\":\"{{utilizador2_id}}\",\r\n    \"ParaUtilizadorId\":\"{{utilizador_id}}\",\r\n    \"UtilizadorObjetivoId\":\"{{utilizador3_id}}\",\r\n    \"ForcaLigacao\":4,\r\n    \"Tags\":[\"CAA\",\"CSC\"],\r\n    \"MensagemIntroducao\":\"{{mensagem}}\",\r\n    \"MensagemLigacao\":\"{{mensagem}}\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/PedidosIntroducao/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"PedidosIntroducao",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get PedidoIntroducao Just Created",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Pedido Introducao creation returns status 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Pedido Introducao has correct pedidoIntroducao_id\", function () {\r",
+							"    pm.expect(responseJson.id).to.eql(pm.globals.get(\"pedidoIntroducao_id\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Pedido Introducao has correct uti1\", function () {\r",
+							"    pm.expect(responseJson.DeUtilizadorId).to.eql(pm.globals.get(\"{{utilizador2_id}}\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Pedido Introducao has correct uti2\", function () {\r",
+							"    pm.expect(responseJson.ParaUtilizadorId).to.eql(pm.globals.get(\"{{utilizador_id}}\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Pedido Introducao has correct uti3\", function () {\r",
+							"    pm.expect(responseJson.UtilizadorObjetivoId).to.eql(pm.globals.get(\"{{utilizador3_id}}\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Pedido Introducao has correct message\", function () {\r",
+							"    pm.expect(responseJson.MensagemLigacao).to.eql(pm.environment.get(\"{{messagem}}\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{autenticacao2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/PedidosIntroducao/{{pedidoIntroducao_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"PedidosIntroducao",
+						"{{pedidoIntroducao_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put PedidoIntroducao rejected",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Pedido Introducao edited returns status 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Pedido Introducao edited has correct status\", function () {\r",
+							"    pm.expect(responseJson.estado).to.eql(\"RECUSADO\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{autenticacao2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Id\":\"{{pedidoIntroducao_id}}\",\r\n    \"Estado\":\"RECUSADO\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/PedidosIntroducao/{{pedidoIntroducao_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"PedidosIntroducao",
+						"{{pedidoIntroducao_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete uti1",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/Utilizadores/{{utilizador_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Utilizadores",
+						"{{utilizador_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete uti2",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/Utilizadores/{{utilizador2_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Utilizadores",
+						"{{utilizador2_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete uti3",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/Utilizadores/{{utilizador3_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Utilizadores",
+						"{{utilizador3_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete Ligacao",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/Ligacoes/{{ligacao_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Ligacoes",
+						"{{ligacao_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete PedidoLigacao",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/PedidosLigacao/{{pedido_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"PedidosLigacao",
+						"{{pedido_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete PedidoIntroducao",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/PedidosIntroducao/{{pedidoIntroducao_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"PedidosIntroducao",
+						"{{pedidoIntroducao_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

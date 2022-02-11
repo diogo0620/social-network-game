@@ -1,0 +1,157 @@
+<div class="pagina">
+    
+    <div class="aCarregar" *ngIf="aCarregarPosts">
+        <p>A carregar feed...</p>
+        <div class="loader"></div>
+    </div>
+
+
+    <div class="semPublicacoes" *ngIf="!aCarregarPosts && posts.length == 0" >
+        <p>Não foram encontrados posts.</p>
+    </div>
+    
+<div class="posts" *ngIf="!aCarregarPosts">
+    <div class="post" *ngFor="let post of posts">
+
+        <div class="topo">
+            <img src="../../../assets/{{post.utilizador.avatar}}" style="cursor: pointer;" (click)="irParaPerfil(post.utilizador.id)">
+            <div class="info">
+                <div class="cima">
+                    <h2>{{post.utilizador.nome}}</h2>
+                    <h3>{{post.utilizador.email}}</h3>
+                </div>
+
+                <div class="baixo">
+                    <p>{{post.data}}</p>
+                </div>
+            </div>
+
+            <div class="tags">
+                <p *ngFor="let tag of post.tags">{{tag}}</p>
+                
+            </div>
+        </div>
+
+        <hr>
+        <div class="main" >
+            <p>{{post.texto}}</p>
+        </div>
+        
+        <hr>
+        
+        
+        <div class="reacoes-comentarios">
+                <div class="reacao">
+                    <img src="../../../assets/like_nao_preenchido.png" (click)="like(post)" *ngIf="!post.temLikeDoAutenticado">
+                    <img src="../../../assets/like_preenchido.png" (click)="tirarLike(post)" *ngIf="post.temLikeDoAutenticado">
+                    <p><b>{{post.likes.length}}</b></p>
+                </div>
+
+                <div class="reacao">
+                    <img src="../../../assets/dislike_nao_preenchido.png" (click)="dislike(post)" *ngIf="!post.temDislikeDoAutenticado">
+                    <img src="../../../assets/dislike_preenchido.png" (click)="tirarDislike(post)" *ngIf="post.temDislikeDoAutenticado">
+                    <p><b>{{post.dislikes.length}}</b></p>
+                </div>
+
+                <div class="reacao" *ngIf="post.comentarios">
+                    <img src="../../../assets/comentario_nao_preenchido.png" (click)="comentarios(post)" *ngIf="!post.temComentarioDoAutenticado">
+                    <img src="../../../assets/comentario_preenchido.png" (click)="comentarios(post)" *ngIf="post.temComentarioDoAutenticado">
+                    <p><b>{{post.comentarios.length}}</b></p>
+                </div>
+        </div>
+
+        <div class="comentarios" *ngIf="post.mostrarComentarios">
+            
+            <hr>
+
+            <div class="lista-comentarios">
+                <div class="a-carregar-comentarios" *ngIf="!post.comentarios">
+                    <p><b>A carregar comentários...</b></p>
+                    <div class="loader"></div>
+                </div>
+
+                <p *ngIf="post.comentarios && post.comentarios.length == 0">Sem comentários</p>
+
+
+                <div class="comentario" *ngFor="let comentario of post.comentarios">
+                    <div class="topo">
+                        <img src="../../../assets/{{comentario.utilizador.avatar}}" style="cursor: pointer;" (click)="irParaPerfil(comentario.utilizador.id)">
+                        <div class="info">
+                            <div class="cima">
+                                <h2>{{comentario.utilizador.nome}}</h2>
+                                <h3>{{comentario.utilizador.email}}</h3>
+                            </div>
+            
+                            <div class="baixo">
+                                <p>{{comentario.data}}</p>
+                            </div>
+                        </div>
+            
+                        <div class="tags">
+                            <p *ngFor="let tag of comentario.tags">{{tag}}</p>
+                            
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="main">
+                        <p>{{comentario.texto}}</p>
+                    </div>
+
+                    <hr>
+        
+        
+                    <div class="reacoes-comentarios">
+                            <div class="reacao">
+                                <img src="../../../assets/like_nao_preenchido.png" (click)="likeNoComentario(comentario)" *ngIf="!comentario.temLikeDoAutenticado">
+                                <img src="../../../assets/like_preenchido.png" (click)="tirarLikeNoComentario(comentario)" *ngIf="comentario.temLikeDoAutenticado">
+                                <p><b>{{comentario.likes.length}}</b></p>
+                            </div>
+            
+                            <div class="reacao">
+                                <img src="../../../assets/dislike_nao_preenchido.png" (click)="dislikeNoComentario(comentario)" *ngIf="!comentario.temDislikeDoAutenticado">
+                                <img src="../../../assets/dislike_preenchido.png" (click)="tirarDislikeNoComentario(comentario)" *ngIf="comentario.temDislikeDoAutenticado">
+                                <p><b>{{comentario.dislikes.length}}</b></p>
+                            </div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr>
+
+            <div class="fazer-comentario">
+                <div class="cima">
+                    <img src="../../assets/{{autenticado.avatar}}" alt="avatar">
+                    <input type="text" placeholder="Faz um comentário" [(ngModel)]="comentario">
+                </div>
+            
+                <div class="baixo">
+                    <div class="tags">
+                        <p><b>Tags:</b></p>
+                        <input type="text" placeholder="Separadas por virgula (ex: Desporto, Netflix)" [(ngModel)]="tags">
+                    </div>
+            
+            
+                    <button (click)="publicar(post)" *ngIf="!post.aPublicarComentario"><b>Publicar</b></button>
+                    <div class="a-publicar" *ngIf="post.aPublicarComentario">
+                        <p><b>A publicar...</b></p>
+                        <div class="loader"></div>
+                    </div>
+                </div>
+            
+            </div>
+
+
+
+        </div>
+
+    
+
+    </div>
+</div>
+    
+
+
+   
+</div>

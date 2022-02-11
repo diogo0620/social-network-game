@@ -1,0 +1,31 @@
+<div class="pagina">
+
+    <div class="topo">
+        <h2>Aceitar pedido de ligação de {{pedido.deUtilizador.nome}}</h2>
+        <hr>
+    </div>
+
+    <div class="meio">
+        <form [formGroup]="formAceitarLigacao">
+            <div class="tags">
+                <h2><b>Tags</b></h2>
+                <input type="text" formControlName="tags">
+            </div>
+
+            <div class="forca-ligacao">
+                <h2><b>Forca de Ligação</b></h2>
+                <div class="forca">
+                    <input type="range" value="50" min="1" max="100" oninput="this.nextElementSibling.value = this.value" formControlName="forcaLigacao">
+                    <output>50</output>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="fundo">
+        <button style="background-color: firebrick;margin-right: 5px; " (click)="cancelar()"><b>Cancelar</b></button>
+        <button style="background-color: forestgreen;" (click)=aceitar()><b>Aceitar</b></button>
+    </div>
+
+</div>

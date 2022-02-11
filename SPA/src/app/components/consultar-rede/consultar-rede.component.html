@@ -1,0 +1,18 @@
+<div id='opcoes'>
+    <div class="fullscreen">
+        <button (click)='openFullscreen()'>Tela Cheia</button>
+    </div>
+
+    <div class="nivelRede">
+        <button (click)='aumentarNivelRede()'>Aumentar Rede</button>
+        <button (click)='diminuirNivelRede()'>Diminuir Rede</button>
+        <p>Nivel da Rede: </p><p id="nivelRede">1</p>
+    </div>
+</div>
+
+<div #pagina class="pagina" (window:resize)="onResize($event)" id="visualizacao">
+    <div id="gui-container"></div>
+</div>
+
+
+

@@ -1,0 +1,118 @@
+<div class="pagina">
+    <div class="pagina-topo">
+        <app-menu-topo-utilizador></app-menu-topo-utilizador>
+    </div>
+    
+
+    <div class="restante-pagina" *ngIf="carregouUtilizador">
+
+        <div class="topo" >
+            <img src="../../../assets/{{utilizador.avatar}}" class="avatar">
+
+            <div class="nome-e-email">
+                <h2 >{{utilizador.nome}}</h2>
+                <h3 >{{utilizador.email}}</h3>
+            </div>
+        
+            <div class="vl"></div>
+
+            <div class="tags">
+                <h2>Tags</h2>
+                <div class="t">
+                    <p *ngFor="let tag of utilizador.tags">{{tag}}</p>
+
+                </div>
+            </div>
+
+            <div class="estado-emocional">
+                <h2>Estado Emocional</h2>
+                <p>{{utilizador.estadoEmocional}}</p>
+            </div>
+
+            <div class="vl"></div>
+
+            <div class="amigos" *ngIf="saoAmigos">
+                <p>Voces são amigos.</p>
+                <button (click)="editarLigacao()" class="botao-topo"><b>Editar ligação</b></button>
+            </div>
+
+
+
+            <div class="amigos" *ngIf="!saoAmigos && !temPedido && !enviouPedido && verificouAmizade && verificouPedidoRecebido && verificouPedidoEnviado">
+                <button (click)="janelaPedidoIntroducao(true)" class="botao-topo"><b>Enviar pedido de introdução</b></button>
+                <button (click)="janelaPedidoLigacao(true)" class="botao-topo"><b>Enviar pedido de ligação</b></button>
+            </div>
+
+            <div class="amigos" *ngIf="temPedido">
+                <p>Enviou-lhe um pedido de ligação.</p>
+                <div class="aceitar-recusar">
+                    <button style="background-color: firebrick;" (click) = "recusarPedido()"><b>Recusar</b></button>
+                    <button style="background-color: forestgreen;margin-left: 5px;" (click)="aceitarPedido()"><b>Aceitar</b></button>
+                </div>
+            </div>
+
+            <div class="amigos" *ngIf="enviouPedido">
+                <p>Pedido de ligação enviado.</p>
+                <p>(Pendente)</p>
+            </div>
+
+        </div>
+
+        <div class="baixo">
+            <div class="esquerda">
+                <p (click)="opcao(1)" [ngClass]="opcaoStyle[1]"><b>Feed</b></p>
+                <p (click)="opcao(2)" [ngClass]="opcaoStyle[2]"><b>Informação</b></p>
+                <p (click)="opcao(3)" [ngClass]="opcaoStyle[3]"><b>Caminhos</b></p>
+                <p (click)="opcao(4)" [ngClass]="opcaoStyle[4]"><b>Amigos em Comum</b></p>
+                <p (click)="opcao(5)" [ngClass]="opcaoStyle[5]" *ngIf="saoAmigos"><b>Ligação</b></p>
+            </div>
+
+
+            <div class="direita" *ngIf="opcao_feed && carregouUtilizador">
+                <app-feed-posts [utilizador]="utilizador"></app-feed-posts>
+            </div>
+
+            <div class="direita" *ngIf="opcao_informacao">
+                <app-informacao-perfil [uti] ="utilizador"></app-informacao-perfil>
+            </div>
+
+            <div class="direita" *ngIf="opcao_caminhos">
+                <app-caminhos [paraUtilizadorID]="utilizador.id"></app-caminhos>
+            </div>
+            
+            <div class="direita" *ngIf="opcao_amigos_comum">
+                <app-amigos-comum [paraUtilizadorID]="utilizador.id"></app-amigos-comum>
+            </div>
+
+            <div class="direita" *ngIf="opcao_ligacao">
+                <app-ligacao [ligacao]="ligacao"></app-ligacao>
+            </div>
+
+            
+
+        </div>
+
+
+        <div *ngIf="pretendeEnviarPedidoLigacao" class="popup">
+            <app-fazer-pedido-ligacao [utilizador]="utilizador" (janelaAberta)="pedidoFeito($event)"></app-fazer-pedido-ligacao>
+        </div>
+
+        <div *ngIf="pretendeEnviarPedidoIntroducao" class="popup">
+            <app-fazer-pedido-introducao [utilizador]="utilizador" (janelaAberta)="janelaPedidoIntroducao($event)"></app-fazer-pedido-introducao>
+        </div>
+
+        <div  *ngIf="pretendeEditarLigacao" class="popup">
+           <app-editar-ligacao [ligacao]="ligacao" (janelaAberta)="janelaEditarLigacao($event)"></app-editar-ligacao>
+        </div>
+
+        <div  *ngIf="pretendeAceitarPedido" class="popup">
+            <app-aceitar-pedido-ligacao [pedido]="pedido" (janelaAberta)="respostaAoPedidoLigacao($event)"></app-aceitar-pedido-ligacao>
+         </div>
+
+    </div>
+
+    <div class="aProcurar" *ngIf="!carregouUtilizador">
+        <p>A carregar utilizador...</p>
+        <div class="loader"></div>
+    </div>
+</div>

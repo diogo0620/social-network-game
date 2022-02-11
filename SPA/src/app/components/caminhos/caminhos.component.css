@@ -1,0 +1,397 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.pagina {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.definicoes img {
+  width: 20px;
+  cursor: pointer;
+}
+
+.topo-definicoes {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid white;
+  margin-bottom: 5%;
+}
+
+.topo-definicoes h2 {
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+}
+
+.maximo-ligacoes {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid white;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.maximo-ligacoes p {
+  color: white;
+}
+
+.maximo-ligacoes input {
+  width: 40px;
+  background-color: transparent;
+  border: 0;
+  color: white;
+}
+
+.maximo-ligacoes input:focus {
+  outline: 0;
+}
+
+.considerar-estados-emocionais {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid white;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.considerar-estados-emocionais p {
+  color: white;
+}
+
+.janelaDefinicoes {
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #20416a;
+  position: absolute;
+  margin: auto;
+  z-index: 10;
+  width: 30%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main-definicoes {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.apresentarEstadosEmocionais {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  border: 2px solid white;
+}
+
+.apresentarEstadosEmocionais p {
+  color: white;
+}
+
+.apresentarEstadosEmocionais .titulo {
+  border-bottom: 2px solid white;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-bottom: 5px;
+}
+
+.tipoAlgoritmo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid white;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.tipoAlgoritmo .tit {
+  color: white;
+  text-align: center;
+}
+
+.algoritmos {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.algoritmo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.algoritmo p {
+  color: white;
+  margin-right: 2px;
+}
+
+.emocao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.botoes {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.botoes button {
+  padding: 6px;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+}
+
+.botoes button:hover {
+  opacity: 0.8;
+}
+
+.topo {
+  width: 100%;
+  height: 8%;
+  border-bottom: 2px solid #20416a;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2%;
+}
+
+.meio {
+  height: 15%;
+  background-color: gray;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin-bottom: 2%;
+}
+
+.baixo {
+  width: 100%;
+  height: 68%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topo .tipo-caminho {
+  display: flex;
+  align-items: center;
+}
+
+.topo h2 {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #20416a;
+  font-size: 1.1rem;
+  margin-right: 5px;
+}
+
+.topo .tipo-caminho select {
+  background-color: transparent;
+  border: 0;
+  color: #20416a;
+}
+
+.topo .tipo-caminho select:focus {
+  outline: 0;
+}
+
+.topo .forca-minima {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.topo .forca-minima input {
+  background-color: transparent;
+  border: 0;
+  width: 40px;
+  height: 100%;
+  color: #20416a;
+}
+
+.topo .forca-minima input:focus {
+  outline: 0;
+}
+
+.meio .info-caminho {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 0 10px;
+}
+
+.meio .info-caminho h3 {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  font-size: 1rem;
+}
+
+.meio .info-caminho p {
+  color: white;
+  font-size: 0.8rem;
+}
+
+.loader {
+  margin-top: 1%;
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid #20416a;
+  width: 40px;
+  height: 40px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+.a-calcular {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 86%;
+}
+
+.a-calcular p {
+  color: rgb(161, 161, 161);
+  font-size: 0.9rem;
+}
+
+.no {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.utilizador {
+  background-color: #20416a;
+  border-radius: 10px;
+  text-align: center;
+
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.info-ligacao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-ligacao p {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.info-ligacao img {
+  width: 40px;
+}
+
+.forcaLigacao {
+  color: crimson;
+}
+
+.forcaRelacao {
+  color: seagreen;
+}
+
+.meio-baixo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.opcao-visualizacao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.opcao-visualizacao:nth-of-type(1) {
+  background-color: crimson;
+  margin-right: 5px;
+}
+
+.opcao-visualizacao:nth-of-type(2) {
+  background-color: seagreen;
+}
+
+.opcao-visualizacao p {
+  margin-right: 5px;
+  color: white;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.utilizadorEemocao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.utilizadorEemocao img {
+  width: 20px;
+  margin-bottom: 5px;
+}
+
+.utilizadorEemocao p {
+  margin-bottom: 18px;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

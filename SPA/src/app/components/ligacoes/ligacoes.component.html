@@ -1,0 +1,46 @@
+<div class="pagina">
+
+    <div class="topo">
+        <app-menu-topo-utilizador></app-menu-topo-utilizador>
+    </div>
+    
+
+    <div class="restante-pagina">
+        <div class="esquerda"> 
+            <img src="../../../assets/relationships.png" alt="">
+            <p (click)="opcao(1)" [ngClass]="opcaoStyle[1]"><b>Amigos</b></p>
+            <p (click)="opcao(2)" [ngClass]="opcaoStyle[2]"><b>Consultar Rede (3D)</b></p>
+            <p (click)="opcao(3)" [ngClass]="opcaoStyle[3]"><b>Cloud de Tags</b></p>
+            <p (click)="opcao(4)" [ngClass]="opcaoStyle[4]"><b>Sugestões</b></p>
+
+        </div>
+
+
+        <div class="direita" *ngIf="listaAmigos">
+            <app-lista-amigos></app-lista-amigos>
+        </div>
+
+        <div class="direita" *ngIf="consultarRede">
+            <app-consultar-rede></app-consultar-rede>
+        </div>
+
+        <div class="direita" *ngIf="tagsCloud">
+            <app-cloud-tags [tipoDeTags]="3"></app-cloud-tags>
+        </div>
+
+        <div class="direita" *ngIf="sugestoes">
+            <app-sugestoes></app-sugestoes>
+        </div>
+
+
+
+    
+
+       
+   </div>
+
+
+
+</div>
+
+
