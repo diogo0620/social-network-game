@@ -25,3 +25,13 @@ Embora o sistema conheça toda a rede social, cada utilizador vê a rede a parti
 - Planeamento: Módulo de IA. Responsavel por determinar caminhos entre dois utilizadores, sugestões de utilizadores/grupos com base em tags/amigos em comum.
 
 ![VistaLogicaN2](docs/images/VistaLogicaN2.png)
+
+## 3. Produto Final
+
+![Demo1](docs/images/Demo1.png)
+![Demo2](docs/images/Demo2.png)
+![Demo3](docs/images/Demo3.png)
+![Demo4](docs/images/Demo4.png)
+![Demo5](docs/images/Demo5.png)
+
+
