@@ -21,6 +21,7 @@ Embora o sistema conheça toda a rede social, cada utilizador vê a rede a parti
 
 - MDR (Master Data Rede): Backend desenvolvido em .Net C# responsavel pelos utilizadores, ligações, pedidos de ligação e pedidos de introdução. A autenticação de utilizadores também é feita aqui. Os dados são armazenados numa base de dados SQL Server.
 - MDP (Master Data Posts): Backend desenvolvido em NodeJS para gerir posts, comentários e reações a ambos (likes, dislikes). Uso de NoSQL, mais especificamente MongoDB, para armazenadar os dados.
-- SPA (Single Page Application): 
+- SPA (Single Page Application): Frontend desenvolvido com Angular. Parte gráfica do jogo implementada com a ferramenta THREE.js
+- Planeamento: Módulo de IA. Responsavel por determinar caminhos entre dois utilizadores, sugestões de utilizadores/grupos com base em tags/amigos em comum.
 
 ![VistaLogicaN2](docs/images/VistaLogicaN2.png)
