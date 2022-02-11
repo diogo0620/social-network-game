@@ -5,9 +5,9 @@
 Pretende-se o desenvolvimento de um protótipo para um jogo baseado na visualização e manipulação de grafos sociais.
 
 O protótipo inicial deve ser constituído pelos seguintes módulos:
-• Jogo 3D com componentes de inteligência artificial
-• Gestão de rede social e dados mestres
-• Leaderboard e consultas
+- Jogo 3D com componentes de inteligência artificial
+- Gestão de rede social e dados mestres
+- Leaderboard e consultas
 
 Tratando-se de um sistema protótipo, é aceitável que apenas algumas funcionalidades estejam implementadas, devendo constar no relatório de proposta quais as funcionalidades implementadas. O Jogo simula uma rede social e o jogador tem por objetivo expandir a sua rede social, com o objetivo último de ter a maior e mais forte rede social possível. O jogo desenrola-se numa série de missões em que o jogador terá que avançar e aumentar a sua rede para subir no leader board. Um utilizador pode iniciar um jogo/missão em qualquer momento escolhendo o nível de dificuldade pretendido.
 
