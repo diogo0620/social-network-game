@@ -17,3 +17,10 @@ Cada utilizador possui ligações com outros utilizadores, podendo catalogar ess
 
 Embora o sistema conheça toda a rede social, cada utilizador vê a rede a partir da sua perspetiva, ou seja, ele será o nó “central” do seu grafo. A rede social de um dado utilizador é visível até n níveis (ex., nível 2 corresponde aos amigos dos amigos). 
 
+## 2. Solução apresentada
+
+- MDR (Master Data Rede): Backend desenvolvido em .Net C# responsavel pelos utilizadores, ligações, pedidos de ligação e pedidos de introdução. A autenticação de utilizadores também é feita aqui. Os dados são armazenados numa base de dados SQL Server.
+- MDP (Master Data Posts): Backend desenvolvido em NodeJS para gerir posts, comentários e reações a ambos (likes, dislikes). Uso de NoSQL, mais especificamente MongoDB, para armazenadar os dados.
+- SPA (Single Page Application): 
+
+![VistaLogicaN2](docs/images/VistaLogicaN2.png)
